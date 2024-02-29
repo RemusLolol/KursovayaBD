@@ -26,6 +26,6 @@ public class EmployeesService {
     }
 
     public boolean employeeExistsByEmail(String email) {
-        return employeesRepository.existsByEmailEmpl(email);
+        return employeesRepository.existsByEmailEmployees(email);
     }
 }

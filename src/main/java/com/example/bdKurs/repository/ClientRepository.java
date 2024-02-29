@@ -13,4 +13,7 @@ public interface ClientRepository extends JpaRepository<Clients, Long> {
     List<Clients> findAllClients();
 
     boolean existsByEmail(String email);
+
+    @Query("SELECT CASE WHEN COUNT(c) > 0 THEN true ELSE false END FROM Clients c WHERE c.email = :email AND c.password_hash = :passwordHash")
+    boolean existsByEmailAndPassword(String email, String passwordHash);
 }
