@@ -11,4 +11,6 @@ import java.util.List;
 public interface ClientRepository extends JpaRepository<Clients, Long> {
     @Query(value = "SELECT * FROM clients", nativeQuery = true)
     List<Clients> findAllClients();
+
+    boolean existsByEmail(String email);
 }

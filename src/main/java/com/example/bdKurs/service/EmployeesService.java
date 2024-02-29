@@ -17,8 +17,15 @@ public class EmployeesService {
         this.employeesRepository = employeesRepository;
     }
 
-    // Метод для получения всех работников
     public List<Employees> getAllEmployees() {
         return employeesRepository.findAllEmployees();
+    }
+
+    public void registerEmployees(Employees employees) {
+        employeesRepository.save(employees);
+    }
+
+    public boolean employeeExistsByEmail(String email) {
+        return employeesRepository.existsByEmailEmpl(email);
     }
 }

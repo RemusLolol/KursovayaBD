@@ -1,14 +1,11 @@
 package com.example.bdKurs.model;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import jakarta.persistence.Entity;
 import java.util.Date;
 
 @Entity
@@ -20,15 +17,15 @@ public class Employees {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String employeeName;
-    private String employeeSurname;
-    private Date dateOfBirth;
+
+    private String employeename;
+    private String employeesurname;
+    private Date dateofbirth;
     private char sex;
-    private String phoneNumber;
+    private String phonenumber;
     private String email;
-    private Date hireDate;
+    private Date hiredate;
     private String position;
     private String department;
     private String password_hash;
-
 }

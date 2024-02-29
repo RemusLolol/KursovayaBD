@@ -16,14 +16,17 @@ public class ClientService {
         this.clientRepository = clientRepository;
     }
 
-    // Метод для регистрации клиента
     public void registerClient(Clients client) {
         clientRepository.save(client);
     }
 
-    // Метод для получения всех клиентов
     public List<Clients> getAllClients() {
         return clientRepository.findAllClients();
     }
+
+    public boolean clientExistsByEmail(String email) {
+        return clientRepository.existsByEmail(email);
+    }
+
 }
 

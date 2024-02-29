@@ -10,4 +10,6 @@ public interface EmployeesRepository extends JpaRepository<Employees, Long> {
 
     @Query(value = "SELECT * FROM employees", nativeQuery = true)
     List<Employees> findAllEmployees();
+
+    boolean existsByEmailEmpl(String email);
 }

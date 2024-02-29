@@ -5,19 +5,18 @@
         const lastNameClient = document.getElementById('inputLastName').value;
         const dataBirthday = document.getElementById('inputDOB').value;
         const gender = document.getElementById('inputGender').value;
-
         const address = document.getElementById('inputAddress').value;
         const email = document.getElementById('inputEmail').value;
         const phone = document.getElementById('inputPhone').value;
         const password = document.getElementById('inputPassword').value;
 
         const clientData = {
-            clientName: nameClient,
-            clientSurname: lastNameClient,
-            dateOfBirth : dataBirthday,
+            clientname: nameClient,
+            clientsurname: lastNameClient,
+            dateofbirth : dataBirthday,
             sex : gender,
             address : address,
-            phoneNumber : phone,
+            phonenumber : phone,
             email : email,
             password_hash : password
         };
@@ -41,18 +40,52 @@
                 alert('An error occurred. Please try again later.');
             });
 }
-document.getElementById('registrationForm').addEventListener('submit', regClient);
-
+document.getElementById('registrationClientForm').addEventListener('submit', regClient);
 
 function regEmployee(){
-    const nameEmpl = document.getElementById('inputNameEmpl');
-    const lastNameEmpl = document.getElementById('inputLastNameEmpl');
-    const dataBirthday = document.getElementById('inputDOBEmpl');
-    const gender = document.getElementById('inputGenderEmpl');
-    const email = document.getElementById('inputEmailEmpl');
-    const phone = document.getElementById('inputPhoneEmpl');
-    const hireDateEmpl = document.getElementById('inputHireDateEmpl');
-    const positionEmpl = document.getElementById('inputPositionEmpl');
-    const departmentEmpl = document.getElementById('inputDepartmentEmpl');
-    const passwordEmpl = document.getElementById('inputPasswordEmpl');
+    event.preventDefault();
+
+    const nameEmpl = document.getElementById('inputNameEmpl').value;
+    const lastNameEmpl = document.getElementById('inputLastNameEmpl').value;
+    const dataBirthday = document.getElementById('inputDOBEmpl').value;
+    const gender = document.getElementById('inputGenderEmpl').value;
+    const email = document.getElementById('inputEmailEmpl').value;
+    const phone = document.getElementById('inputPhoneEmpl').value;
+    const hireDateEmpl = document.getElementById('inputHireDateEmpl').value;
+    const positionEmpl = document.getElementById('inputPositionEmpl').value;
+    const departmentEmpl = document.getElementById('inputDepartmentEmpl').value;
+    const passwordEmpl = document.getElementById('inputPasswordEmpl').value;
+
+    employeeData = {
+        employeename : nameEmpl,
+        employeesurname : lastNameEmpl,
+        dateofbirth : dataBirthday,
+        sex : gender,
+        phonenumber : phone,
+        email : email,
+        hiredate : hireDateEmpl,
+        position : positionEmpl,
+        department : departmentEmpl,
+        password_hash : passwordEmpl
+    }
+
+    fetch('/registerEmployee', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(employeeData)
+    })
+        .then(response => {
+            if (response.ok) {
+                alert("Registration successful");
+            } else {
+                alert('Registration failed. Please try again.');
+            }
+        })
+        .catch(error => {
+            console.error('Error during registration:', error);
+            alert('An error occurred. Please try again later.');
+        });
 }
+document.getElementById('registrationEmployeeForm').addEventListener('submit', regClient);
