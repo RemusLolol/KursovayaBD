@@ -28,4 +28,8 @@ public class EmployeesService {
     public boolean employeeExistsByEmail(String email) {
         return employeesRepository.existsByEmailEmployees(email);
     }
+
+    public boolean emlpExistsByEmailAndPassword(String email, String password_hash) {
+        return employeesRepository.existsByEmailAndPassword(email, password_hash);
+    }
 }

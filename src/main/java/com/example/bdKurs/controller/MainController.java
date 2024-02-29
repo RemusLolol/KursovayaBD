@@ -58,12 +58,12 @@ public class MainController {
         }
     }
 
-//    @PostMapping("/loginEmployee")
-//    public ResponseEntity<String> loginEmployee(@RequestBody Employees employee) {
-//        if (employeesService.authenticateEmployee(employee.getEmail(), employee.getPassword_hash())) {
-//            return ResponseEntity.status(HttpStatus.OK).body("Login successful");
-//        } else {
-//            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Login failed. Invalid email or password.");
-//        }
-//    }
+    @PostMapping("/loginEmployee")
+    public ResponseEntity<String> loginEmployee(@RequestBody Employees employee) {
+        if (employeesService.emlpExistsByEmailAndPassword(employee.getEmail(), employee.getPassword_hash())) {
+            return ResponseEntity.status(HttpStatus.OK).body("Login successful");
+        } else {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Login failed. Invalid email or password.");
+        }
+    }
 }
