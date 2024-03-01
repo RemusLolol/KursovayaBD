@@ -26,7 +26,31 @@ function autentification() {
     })
         .then(response => {
             if (response.ok) {
-                alert("Login successful");
+                $('#loginModal').modal('hide');
+                var navbarNav = document.querySelector('.navbar-nav');
+                navbarNav.style.display = 'none';
+                var circle = document.getElementById('circle');
+                circle.style.display = 'block';
+
+                var emailText = document.createElement('span');
+                emailText.textContent = email;
+                emailText.style.display = 'none';
+
+                circle.appendChild(emailText);
+
+                circle.addEventListener('mouseenter', function() {
+                    // Показываем текстовый элемент
+                    emailText.style.display = 'block';
+                    emailText.style.position = 'absolute';
+                    emailText.style.top = '-20px';
+                    emailText.style.left = '50%';
+                    emailText.style.transform = 'translateX(-50%)';
+                });
+                circle.addEventListener('mouseleave', function() {
+                    emailText.style.display = 'none';
+                });
+
+                alert('Login succesfull');
             } else {
                 alert('Login failed. Please try again.');
             }

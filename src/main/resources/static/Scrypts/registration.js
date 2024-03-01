@@ -44,7 +44,6 @@ function regClient() {
             alert('An error occurred. Please try again later.');
         });
 }
-document.getElementById('registrationClientForm').addEventListener('submit', regClient);
 
 function regEmployee() {
     event.preventDefault();
@@ -97,5 +96,3 @@ function regEmployee() {
             alert('An error occurred. Please try again later.');
         });
 }
-
-document.getElementById('registrationEmployeeForm').addEventListener('submit', regClient);

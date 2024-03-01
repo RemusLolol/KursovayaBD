@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Регистрация</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
         <style>
             body {
                 background-color: #343a40;
@@ -35,16 +36,63 @@
                 border-color: #495057;
                 color: #ffffff;
             }
+            .circle {
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                background-color: #343a40;
+                position: fixed;
+                top: 20px;
+                right: 200px;
+                align-items: center;
+                justify-content: center;
+                color: #fff;
+                font-size: 16px;
+                cursor: pointer;
+                z-index: 9999;
+                display: none;
+            }
 
+            .menu {
+                position: fixed;
+                top: 75px;
+                right: 20px;
+                background-color: #343a40;
+                border-radius: 10px;
+                padding: 10px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+                display: none;
+                z-index: 9999;
+            }
+
+            .menu ul {
+                list-style-type: none;
+                margin: 0;
+                padding: 0;
+            }
+
+            .menu li {
+                padding: 8px 0;
+                cursor: pointer;
+            }
+
+            .menu li:hover {
+                background-color: #495057;
+            }
+
+            .logout {
+                color: #dc3545;
+            }
         </style>
 
         <script src="/Scrypts/registration.js"></script>
         <script src="/Scrypts/login.js"></script>
+        <script src="/Scrypts/circleAccount.js"></script>
     </head>
     <body>
         <nav class="navbar navbar-expand-lg navbar-dark">
             <div class="container">
-                <a class="navbar-brand" href="#">Регистрация</a>
+                <a class="navbar-brand" href="#">Главная страница</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -208,7 +256,7 @@
                         <form id="loginForm">
                             <div class="form-group">
                                 <label for="inputEmailEmail">Электронная почта</label>
-                                <input type="text" class="form-control" id="inputEmailEmail" placeholder="exampl@gmail.com">
+                                <input type="text" class="form-control" id="inputEmailEmail" placeholder="example@gmail.com">
                             </div>
                             <div class="form-group">
                                 <label for="passwordLogin">Пароль</label>
@@ -219,6 +267,15 @@
                     </div>
                 </div>
             </div>
+        </div>
+
+        <div class="circle" id="circle" onclick="toggleMenu()"><i class="fas fa-user"></i></div>
+        <div class="menu" id="menu">
+            <ul>
+                <li onclick="viewAccountInfo()"><i class="fas fa-user-circle"></i> Просмотреть информацию об аккаунте</li>
+                <li onclick="viewInsurancePolicies()"><i class="fas fa-file-alt"></i> Просмотреть зарегистрированные страховые полисы</li>
+                <li onclick="logout()" class="logout"><i class="fas fa-sign-out-alt"></i> Выйти из аккаунта</li>
+            </ul>
         </div>
 
         <!-- Подключение скриптов Bootstrap и jQuery (обязательно для работы модальных окон) -->
