@@ -28,4 +28,8 @@ public class Employees {
     private String position;
     private String department;
     private String password_hash;
+
+    public String toString(){
+        return "Email: " + email + " Password: " + password_hash;
+    }
 }

@@ -1,296 +1,315 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Регистрация</title>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-        <style>
-            body {
-                background-color: #343a40;
-                color: #ffffff;
-            }
-            .modal-content {
-                background-color: #495057;
-            }
-            .modal-header, .modal-footer {
-                border-color: #343a40;
-            }
-            .modal-header {
-                background-color: #343a40;
-            }
-            .modal-title {
-                color: #ffffff;
-            }
-            .modal-body {
-                color: #ffffff;
-            }
-            .form-control {
-                background-color: #343a40;
-                color: #ffffff;
-                border-color: #495057;
-            }
-            .form-control:focus {
-                background-color: #464a4e;
-                border-color: #495057;
-                color: #ffffff;
-            }
-            .circle {
-                width: 50px;
-                height: 50px;
-                border-radius: 50%;
-                background-color: #343a40;
-                position: fixed;
-                top: 20px;
-                right: 200px;
-                align-items: center;
-                justify-content: center;
-                color: #fff;
-                font-size: 16px;
-                cursor: pointer;
-                z-index: 9999;
-                display: none;
-            }
+    <!DOCTYPE html>
+    <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Главное окно</title>
+            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+            <style>
+                body {
+                    background-color: #343a40;
+                    color: #ffffff;
+                }
+                .modal-content {
+                    background-color: #495057;
+                }
+                .modal-header, .modal-footer {
+                    border-color: #343a40;
+                }
+                .modal-header {
+                    background-color: #343a40;
+                }
+                .modal-title {
+                    color: #ffffff;
+                }
+                .modal-body {
+                    color: #ffffff;
+                }
+                .form-control {
+                    background-color: #343a40;
+                    color: #ffffff;
+                    border-color: #495057;
+                }
+                .form-control:focus {
+                    background-color: #464a4e;
+                    border-color: #495057;
+                    color: #ffffff;
+                }
+                .circle {
+                    width: 50px;
+                    height: 50px;
+                    border-radius: 50%;
+                    background-color: #343a40;
+                    position: fixed;
+                    top: 20px;
+                    right: 200px;
+                    align-items: center;
+                    justify-content: center;
+                    color: #fff;
+                    font-size: 16px;
+                    cursor: pointer;
+                    z-index: 9999;
+                    display: none;
+                }
 
-            .menu {
-                position: fixed;
-                top: 75px;
-                right: 20px;
-                background-color: #343a40;
-                border-radius: 10px;
-                padding: 10px;
-                box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-                display: none;
-                z-index: 9999;
-            }
+                .menu {
+                    position: fixed;
+                    top: 75px;
+                    right: 20px;
+                    background-color: #343a40;
+                    border-radius: 10px;
+                    padding: 10px;
+                    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+                    display: none;
+                    z-index: 9999;
+                }
 
-            .menu ul {
-                list-style-type: none;
-                margin: 0;
-                padding: 0;
-            }
+                .menu ul {
+                    list-style-type: none;
+                    margin: 0;
+                    padding: 0;
+                }
 
-            .menu li {
-                padding: 8px 0;
-                cursor: pointer;
-            }
+                .menu li {
+                    padding: 8px 0;
+                    cursor: pointer;
+                }
 
-            .menu li:hover {
-                background-color: #495057;
-            }
+                .menu li:hover {
+                    background-color: #495057;
+                }
 
-            .logout {
-                color: #dc3545;
-            }
-        </style>
+                .logout {
+                    color: #dc3545;
+                }
+            </style>
 
-        <script src="/Scrypts/registration.js"></script>
-        <script src="/Scrypts/login.js"></script>
-        <script src="/Scrypts/circleAccount.js"></script>
-    </head>
-    <body>
-        <nav class="navbar navbar-expand-lg navbar-dark">
-            <div class="container">
-                <a class="navbar-brand" href="#">Главная страница</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav ml-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="#" data-toggle="modal" data-target="#loginModal">Войти в систему</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#" data-toggle="modal" data-target="#employeeRegistrationModal">Регистрация работника</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#" data-toggle="modal" data-target="#customerRegistrationModal">Регистрация клиента</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-
-        <!-- Модальное окно для регистрации работника -->
-        <div class="modal fade" id="employeeRegistrationModal" tabindex="-1" role="dialog" aria-labelledby="employeeRegistrationModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="employeeRegistrationModalLabel">Регистрация работника</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <!-- Форма регистрации работника -->
-                        <form id="registrationEmployeeForm">
-                            <div class="form-group">
-                                <label for="inputNameEmpl">Имя</label>
-                                <input type="text" class="form-control" id="inputNameEmpl" placeholder="Введите ваше имя" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="inputLastNameEmpl">Фамилия</label>
-                                <input type="text" class="form-control" id="inputLastNameEmpl" placeholder="Введите вашу фамилию" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="inputDOBEmpl">Дата рождения</label>
-                                <input type="date" class="form-control" id="inputDOBEmpl" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="inputGenderEmpl">Пол</label>
-                                <select class="form-control" id="inputGenderEmpl">
-                                    <option value="М">Мужской</option>
-                                    <option value="Ж">Женский</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="inputPhoneEmpl">Номер телефона</label>
-                                <input type="tel" class="form-control" id="inputPhoneEmpl" placeholder="Введите ваш номер телефона">
-                            </div>
-                            <div class="form-group">
-                                <label for="inputEmailEmpl">Адрес электронной почты</label>
-                                <input type="email" class="form-control" id="inputEmailEmpl" placeholder="Введите ваш email" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="inputHireDateEmpl">Дата приема на работу</label>
-                                <input type="date" class="form-control" id="inputHireDateEmpl" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="inputPositionEmpl">Должность</label>
-                                <input type="text" class="form-control" id="inputPositionEmpl" placeholder="Введите вашу должность" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="inputDepartmentEmpl">Отдел</label>
-                                <input type="text" class="form-control" id="inputDepartmentEmpl" placeholder="Введите ваш отдел">
-                            </div>
-                            <div class="form-group">
-                                <label for="inputPasswordEmpl">Пароль</label>
-                                <input type="password" class="form-control" id="inputPasswordEmpl" placeholder="Введите пароль" required>
-                            </div>
-
-                            <!-- Добавьте остальные поля для регистрации работника -->
-                            <button type="submit" class="btn btn-primary btn-block" onclick="regEmployee()">Зарегистрироваться</button>
-                        </form>
+            <script src="/Scrypts/registration.js"></script>
+            <script src="/Scrypts/login.js"></script>
+            <script src="/Scrypts/circleAccount.js"></script>
+        </head>
+        <body>
+            <nav class="navbar navbar-expand-lg navbar-dark">
+                <div class="container">
+                    <a class="navbar-brand" href="#">Главная страница</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="#" data-toggle="modal" data-target="#loginModal">Войти в систему</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#" data-toggle="modal" data-target="#employeeRegistrationModal">Регистрация работника</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#" data-toggle="modal" data-target="#customerRegistrationModal">Регистрация клиента</a>
+                            </li>
+                        </ul>
                     </div>
                 </div>
-            </div>
-        </div>
+            </nav>
 
-        <!-- Модальное окно для регистрации клиента -->
-        <div class="modal fade" id="customerRegistrationModal" tabindex="-1" role="dialog" aria-labelledby="customerRegistrationModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="customerRegistrationModalLabel">Регистрация клиента</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <!-- Форма регистрации клиента -->
-                        <form id="registrationClientForm">
-                            <div class="form-group">
-                                <label for="inputName">Имя</label>
-                                <input type="text" class="form-control" id="inputName" placeholder="Введите ваше имя">
-                            </div>
-                            <div class="form-group">
-                                <label for="inputLastName">Фамилия</label>
-                                <input type="text" class="form-control" id="inputLastName" placeholder="Введите вашу фамилию">
-                            </div>
-                            <div class="form-group">
-                                <label for="inputDOB">Дата рождения</label>
-                                <input type="date" class="form-control" id="inputDOB">
-                            </div>
-                            <div class="form-group">
-                                <label for="inputGender">Пол</label>
-                                <select class="form-control" id="inputGender">
-                                    <option>М</option>
-                                    <option>Ж</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="inputAddress">Адрес</label>
-                                <input type="text" class="form-control" id="inputAddress" placeholder="Введите ваш адрес">
-                            </div>
-                            <div class="form-group">
-                                <label for="inputEmail">Адрес электронной почты</label>
-                                <input type="email" class="form-control" id="inputEmail" placeholder="Введите ваш email">
-                            </div>
-                            <div class="form-group">
-                                <label for="inputPhone">Номер телефона</label>
-                                <input type="tel" class="form-control" id="inputPhone" placeholder="Введите ваш номер телефона">
-                            </div>
-                            <div class="form-group">
-                                <label for="inputPassword">Пароль</label>
-                                <input type="password" class="form-control" id="inputPassword" placeholder="Введите пароль" required>
-                            </div>
-                            <!-- Добавьте остальные поля для регистрации клиента -->
-                            <button type="submit"  class="btn btn-primary btn-block" onclick="regClient()">Зарегистрироваться</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Модальное окно для входа -->
-        <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="loginModalLabel">Выберите тип пользователя и введите данные</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <!-- Переключатель типа пользователя -->
-                        <div class="form-group">
-                            <label for="userType">Выберите тип пользователя:</label>
-                            <select class="form-control" id="userType">
-                                <option value="employee">Работник</option>
-                                <option value="customer">Клиент</option>
-                            </select>
+            <!-- Модальное окно для регистрации работника -->
+            <div class="modal fade" id="employeeRegistrationModal" tabindex="-1" role="dialog" aria-labelledby="employeeRegistrationModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="employeeRegistrationModalLabel">Регистрация работника</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
                         </div>
-                        <!-- Форма ввода данных -->
-                        <form id="loginForm">
-                            <div class="form-group">
-                                <label for="inputEmailEmail">Электронная почта</label>
-                                <input type="text" class="form-control" id="inputEmailEmail" placeholder="example@gmail.com">
-                            </div>
-                            <div class="form-group">
-                                <label for="passwordLogin">Пароль</label>
-                                <input type="password" class="form-control" id="passwordLogin" placeholder="Введите ваш пароль">
-                            </div>
-                            <button type="submit" class="btn btn-primary btn-block" onclick="autentification()">Войти</button>
-                        </form>
+                        <div class="modal-body">
+                            <!-- Форма регистрации работника -->
+                            <form id="registrationEmployeeForm">
+                                <div class="form-group">
+                                    <label for="inputNameEmpl">Имя</label>
+                                    <input type="text" class="form-control" id="inputNameEmpl" placeholder="Введите ваше имя" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputLastNameEmpl">Фамилия</label>
+                                    <input type="text" class="form-control" id="inputLastNameEmpl" placeholder="Введите вашу фамилию" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputDOBEmpl">Дата рождения</label>
+                                    <input type="date" class="form-control" id="inputDOBEmpl" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputGenderEmpl">Пол</label>
+                                    <select class="form-control" id="inputGenderEmpl">
+                                        <option value="М">Мужской</option>
+                                        <option value="Ж">Женский</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputPhoneEmpl">Номер телефона</label>
+                                    <input type="tel" class="form-control" id="inputPhoneEmpl" placeholder="Введите ваш номер телефона">
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputEmailEmpl">Адрес электронной почты</label>
+                                    <input type="email" class="form-control" id="inputEmailEmpl" placeholder="Введите ваш email" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputHireDateEmpl">Дата приема на работу</label>
+                                    <input type="date" class="form-control" id="inputHireDateEmpl" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputPositionEmpl">Должность</label>
+                                    <input type="text" class="form-control" id="inputPositionEmpl" placeholder="Введите вашу должность" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputDepartmentEmpl">Отдел</label>
+                                    <input type="text" class="form-control" id="inputDepartmentEmpl" placeholder="Введите ваш отдел">
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputPasswordEmpl">Пароль</label>
+                                    <input type="password" class="form-control" id="inputPasswordEmpl" placeholder="Введите пароль" required>
+                                </div>
+
+                                <!-- Добавьте остальные поля для регистрации работника -->
+                                <button type="submit" class="btn btn-primary btn-block" onclick="regEmployee()">Зарегистрироваться</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="circle" id="circle" onclick="toggleMenu()"><i class="fas fa-user"></i></div>
-        <div class="menu" id="menu">
-            <ul>
-                <li onclick="viewAccountInfo()"><i class="fas fa-user-circle"></i> Просмотреть информацию об аккаунте</li>
-                <li onclick="viewInsurancePolicies()"><i class="fas fa-file-alt"></i> Просмотреть зарегистрированные страховые полисы</li>
-                <li onclick="logout()" class="logout"><i class="fas fa-sign-out-alt"></i> Выйти из аккаунта</li>
-            </ul>
-        </div>
+            <!-- Модальное окно для регистрации клиента -->
+            <div class="modal fade" id="customerRegistrationModal" tabindex="-1" role="dialog" aria-labelledby="customerRegistrationModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="customerRegistrationModalLabel">Регистрация клиента</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <!-- Форма регистрации клиента -->
+                            <form id="registrationClientForm">
+                                <div class="form-group">
+                                    <label for="inputName">Имя</label>
+                                    <input type="text" class="form-control" id="inputName" placeholder="Введите ваше имя">
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputLastName">Фамилия</label>
+                                    <input type="text" class="form-control" id="inputLastName" placeholder="Введите вашу фамилию">
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputDOB">Дата рождения</label>
+                                    <input type="date" class="form-control" id="inputDOB">
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputGender">Пол</label>
+                                    <select class="form-control" id="inputGender">
+                                        <option>М</option>
+                                        <option>Ж</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputAddress">Адрес</label>
+                                    <input type="text" class="form-control" id="inputAddress" placeholder="Введите ваш адрес">
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputEmail">Адрес электронной почты</label>
+                                    <input type="email" class="form-control" id="inputEmail" placeholder="Введите ваш email">
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputPhone">Номер телефона</label>
+                                    <input type="tel" class="form-control" id="inputPhone" placeholder="Введите ваш номер телефона">
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputPassword">Пароль</label>
+                                    <input type="password" class="form-control" id="inputPassword" placeholder="Введите пароль" required>
+                                </div>
+                                <!-- Добавьте остальные поля для регистрации клиента -->
+                                <button type="submit"  class="btn btn-primary btn-block" onclick="regClient()">Зарегистрироваться</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-        <!-- Подключение скриптов Bootstrap и jQuery (обязательно для работы модальных окон) -->
-        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-        <script>
-            document.getElementById('inputPhone').addEventListener('input', function (e) {
-                var x = e.target.value.replace(/\D/g, '').match(/(\d{0,3})(\d{0,2})(\d{0,3})(\d{0,2})(\d{0,2})/);
-                e.target.value = !x[2] ? x[1] : '+' + x[1] + '(' + x[2] + (x[3] ? ')-' + x[3] : '') + (x[4] ? '-' + x[4] : '') + (x[5] ? '-' + x[5] : '');
-            });
-            document.getElementById('inputPhoneEmpl').addEventListener('input', function (e) {
-                var x = e.target.value.replace(/\D/g, '').match(/(\d{0,3})(\d{0,2})(\d{0,3})(\d{0,2})(\d{0,2})/);
-                e.target.value = !x[2] ? x[1] : '+' + x[1] + '(' + x[2] + (x[3] ? ')-' + x[3] : '') + (x[4] ? '-' + x[4] : '') + (x[5] ? '-' + x[5] : '');
-            });
-        </script>
-    </body>
-</html>
+            <!-- Модальное окно для входа -->
+            <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="loginModalLabel">Выберите тип пользователя и введите данные</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <!-- Переключатель типа пользователя -->
+                            <div class="form-group">
+                                <label for="userType">Выберите тип пользователя:</label>
+                                <select class="form-control" id="userType">
+                                    <option value="employee">Работник</option>
+                                    <option value="customer">Клиент</option>
+                                </select>
+                            </div>
+                            <!-- Форма ввода данных -->
+                            <form id="loginForm">
+                                <div class="form-group">
+                                    <label for="inputEmailEmail">Электронная почта</label>
+                                    <input type="text" class="form-control" id="inputEmailEmail" placeholder="example@gmail.com">
+                                </div>
+                                <div class="form-group">
+                                    <label for="passwordLogin">Пароль</label>
+                                    <input type="password" class="form-control" id="passwordLogin" placeholder="Введите ваш пароль">
+                                </div>
+                                <button type="submit" class="btn btn-primary btn-block" onclick="autentification()">Войти</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="circle" id="circle" onclick="toggleMenu()"><i class="fas fa-user"></i></div>
+            <div class="menu" id="menu">
+                <ul>
+                    <li onclick="viewAccountInfo()"><i class="fas fa-user-circle"></i> Просмотреть информацию об аккаунте</li>
+                    <li onclick="viewInsurancePolicies()"><i class="fas fa-file-alt"></i> Просмотреть зарегистрированные страховые полисы</li>
+                    <li onclick="logout()" class="logout"><i class="fas fa-sign-out-alt"></i> Выйти из аккаунта</li>
+                </ul>
+            </div>
+            <div class="container mt-3">
+                <div class="row">
+                    <div class="col-md-6">
+                        <button id="butCreateIns" onclick="redirectToInsurancePolicyRegistration()" class="btn btn-primary btn-lg d-flex justify-content-center align-items-center" style=" visibility: hidden; width: 250px; height: 250px; background-color: #adb5bd; border-color: #adb5bd; border-radius: 10%;" onmouseover="this.style.backgroundColor='#8c9094'" onmouseout="this.style.backgroundColor='#adb5bd'">Зарегестрировать страховой полис</button>
+                    </div>
+                    <div class="col-md-6 text-right" style="margin-left: -270px;">
+                        <button id="butCreateReport" class="btn btn-primary btn-lg d-flex justify-content-center align-items-center" style="visibility: hidden; width: 250px; height: 250px; background-color: #adb5bd; border-color: #adb5bd; border-radius: 10%;" onmouseover="this.style.backgroundColor='#8c9094'" onmouseout="this.style.backgroundColor='#adb5bd'">Сформировать отчет</button>
+                    </div>
+                </div>
+            </div>
+
+            <script>
+                function redirectToInsurancePolicyRegistration() {
+                    window.location.href = "createNewInsurance.html";
+                }
+            
+                function redirectToReportGeneration() {
+                    window.location.href = "link_to_report_generation_page.html";
+                }
+            </script>
+            <!-- Подключение скриптов Bootstrap и jQuery (обязательно для работы модальных окон) -->
+            <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+            <script>
+                document.getElementById('inputPhone').addEventListener('input', function (e) {
+                    var x = e.target.value.replace(/\D/g, '').match(/(\d{0,3})(\d{0,2})(\d{0,3})(\d{0,2})(\d{0,2})/);
+                    e.target.value = !x[2] ? x[1] : '+' + x[1] + '(' + x[2] + (x[3] ? ')-' + x[3] : '') + (x[4] ? '-' + x[4] : '') + (x[5] ? '-' + x[5] : '');
+                });
+                document.getElementById('inputPhoneEmpl').addEventListener('input', function (e) {
+                    var x = e.target.value.replace(/\D/g, '').match(/(\d{0,3})(\d{0,2})(\d{0,3})(\d{0,2})(\d{0,2})/);
+                    e.target.value = !x[2] ? x[1] : '+' + x[1] + '(' + x[2] + (x[3] ? ')-' + x[3] : '') + (x[4] ? '-' + x[4] : '') + (x[5] ? '-' + x[5] : '');
+                });
+            </script>
+        </body>
+    </html>

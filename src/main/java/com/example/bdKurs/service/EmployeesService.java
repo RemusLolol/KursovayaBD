@@ -30,6 +30,6 @@ public class EmployeesService {
     }
 
     public boolean emlpExistsByEmailAndPassword(String email, String password_hash) {
-        return employeesRepository.existsByEmailAndPassword(email, password_hash);
+        return employeesRepository.existsByEmailAndPasswordEmployees(email, password_hash);
     }
 }

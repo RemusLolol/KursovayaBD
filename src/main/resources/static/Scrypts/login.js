@@ -16,7 +16,6 @@ function autentification() {
     } else if (userType === 'customer') {
         url = '/loginClient';
     }
-
     fetch(url, {
         method: 'POST',
         headers: {
@@ -27,19 +26,18 @@ function autentification() {
         .then(response => {
             if (response.ok) {
                 $('#loginModal').modal('hide');
-                var navbarNav = document.querySelector('.navbar-nav');
-                navbarNav.style.display = 'none';
-                var circle = document.getElementById('circle');
+                const navbarNav = document.querySelector('.navbar-nav');
+                navbarNav.style.visibility = 'hidden';
+                const circle = document.getElementById('circle');
                 circle.style.display = 'block';
 
-                var emailText = document.createElement('span');
+                const emailText = document.createElement('span');
                 emailText.textContent = email;
                 emailText.style.display = 'none';
 
                 circle.appendChild(emailText);
 
                 circle.addEventListener('mouseenter', function() {
-                    // Показываем текстовый элемент
                     emailText.style.display = 'block';
                     emailText.style.position = 'absolute';
                     emailText.style.top = '-20px';
@@ -49,6 +47,12 @@ function autentification() {
                 circle.addEventListener('mouseleave', function() {
                     emailText.style.display = 'none';
                 });
+                if (userType === 'employee') {
+
+                } else if (userType === 'customer') {
+                    document.getElementById('butCreateIns').style.visibility = 'visible';
+                    document.getElementById('butCreateReport').style.visibility = 'visible';
+                }
 
                 alert('Login succesfull');
             } else {

@@ -29,7 +29,7 @@ public class ClientService {
     }
 
     public boolean clientExistsByEmailAndPassword(String email, String password_hash) {
-        return clientRepository.existsByEmailAndPassword(email, password_hash);
+        return clientRepository.existsByEmailAndPasswordClients(email, password_hash);
     }
 }
 
