@@ -1,14 +1,8 @@
 package com.example.bdKurs.model;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
-import javax.persistence.Entity;
+import jakarta.persistence.*;
+import lombok.*;
+import java.util.Date;
 
 @Entity
 @Getter
@@ -21,7 +15,10 @@ public class AllInsurance {
     private Long id;
 
     private String clientemail;
-    private String nameinsurance;
-    private float suninsured;
-    private char statuspayments;
+    private String typeface;
+    private String typeinsurance;
+    private Float suninsured;
+    private Date contract_start_date;
+    private Date contract_end_date;
+    private String statuscheckedinsured;
 }

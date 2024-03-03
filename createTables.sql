@@ -24,14 +24,23 @@ CREATE TABLE employees (
 );
 CREATE TABLE typeInsurance(
     id SERIAL PRIMARY KEY,
+    typeFace VARCHAR(255) NOT NULL,
     nameInsurance VARCHAR(255) NOT NULL,
-    description VARCHAR(255) NOT NULL,
-    pageForInsurance VARCHAR(255) NOT NULL
+    description VARCHAR(255) NOT NULL
 );
 CREATE TABLE allInsurance(
      id SERIAL PRIMARY KEY,
      clientEmail VARCHAR(255) NOT NULL,
-     nameInsurance VARCHAR(255) NOT NULL,
-     sunInsured FLOAT NOT NULL,
-     statusPayments varchar(255) NOT NULL
+     typeFace VARCHAR(255) NOT NULL,
+     typeInsurance VARCHAR(255) NOT NULL,
+     sumInsured FLOAT NOT NULL,
+     contract_start_date DATE NOT NULL,
+     contract_end_date DATE NOT NULL,
+     statusCheckedInsured VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE checkedInsurances(
+    id SERIAL PRIMARY KEY,
+    insurance_claim_check VARCHAR(255) NOT NULL,
+    payment_verification_check VARCHAR(255) NOT NULL
 );

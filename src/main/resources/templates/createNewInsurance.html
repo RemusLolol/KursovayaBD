@@ -21,13 +21,12 @@
         right: 200px;
         align-items: center;
         justify-content: center;
-        color: #fff;
+        color: #fff; /* белый */
         font-size: 16px;
         cursor: pointer;
         z-index: 9999;
         display: none;
       }
-
       .menu {
         position: fixed;
         top: 75px;
@@ -39,35 +38,60 @@
         display: none;
         z-index: 9999;
       }
-
       .menu ul {
         list-style-type: none;
         margin: 0;
         padding: 0;
       }
-
       .menu li {
         padding: 8px 0;
         cursor: pointer;
       }
-
       .menu li:hover {
         background-color: #495057;
       }
-
       .logout {
         color: #dc3545;
       }
+      .container {
+        background-color: #343a40;
+        color: #ffffff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      }
+      label {
+        color: #ffffff;
+      }
+      input.form-control, select.form-control {
+        background-color: #495057;
+        color: #ffffff;
+      }
+      input.form-control:focus, select.form-control:focus {
+        background-color: #495057;
+        color: #ffffff;
+      }
+      button.btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+      }
+      button.btn-primary:hover {
+        background-color: #0056b3;
+        border-color: #0056b3;
+      }
+      select.form-control {
+        width: 300px;
+        height: 30px;
+        font-size: 14px;
+      }
     </style>
-
-    <script src="/Scrypts/registration.js"></script>
-    <script src="/Scrypts/login.js"></script>
-    <script src="/Scrypts/circleAccount.js"></script>
+    <script src="/Scrypts/registrationLoginRedirected.js"></script>
+    <script src="/Scrypts/scryptsForAddIns.js"></script>
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-dark">
       <div class="container">
-        <a class="navbar-brand" href="#">Главная страница</a>
+        <a onclick="redirectToMainPage()" class="navbar-brand" href="#">Главная страница</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -81,6 +105,40 @@
         <li onclick="logout()" class="logout"><i class="fas fa-sign-out-alt"></i> Выйти из аккаунта</li>
       </ul>
     </div>
+
+    <div class="container mt-5">
+      <h2>Опросник по страхованию</h2>
+      <form>
+        <div class="form-group">
+          <label for="selectPerson">Выберите лицо:</label>
+          <select onchange="changeTypeFace()" class="form-control" id="selectPerson">
+            <option>Физическое лицо</option>
+            <option>Юридическое лицо</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="selectInsuranceType">Выберите вид страхования:</label>
+          <select class="form-control" id="selectInsuranceType">
+            <option>Медицинское страхование</option>
+            <option>Автомабильная страховка</option>
+            <option>Страхование жизни</option>
+            <option>Страхование недвижимости</option>
+            <option>Страхование путешествий</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="insuranceAmount">Сумма страхования:</label>
+          <input required style="width: 200px;" type="number" class="form-control" id="insuranceAmount" placeholder="Введите сумму страхования">
+        </div>
+        <div class="form-group">
+          <label for="inputDateEnd">Введите дату окончания страховки</label>
+          <input required style="width:200px" type="date" class="form-control" id="inputDateEnd">
+        </div>
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary">Расчитать</button>
+        </div>
+      </form>
+    </div>  
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
