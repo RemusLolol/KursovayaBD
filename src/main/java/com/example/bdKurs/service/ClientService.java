@@ -31,5 +31,8 @@ public class ClientService {
     public boolean clientExistsByEmailAndPassword(String email, String password_hash) {
         return clientRepository.existsByEmailAndPasswordClients(email, password_hash);
     }
+    public Clients getClientByEmail(String email) {
+        return clientRepository.findByEmail(email);
+    }
 }
 

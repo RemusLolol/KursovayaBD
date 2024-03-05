@@ -1,3 +1,15 @@
+window.onload = function() {
+    const params = new URLSearchParams(window.location.search);
+    const email = params.get('email');
+
+    if (email && sessionStorage.getItem('visited') === 'true') {
+        addCircleMain(email);
+        document.getElementById('butCreateIns').style.visibility = 'visible';
+        document.getElementById('butCreateReport').style.visibility = 'visible';
+    }
+    sessionStorage.setItem('visited', 'true');
+};
+
 function regClient() {
     event.preventDefault();
 
@@ -132,7 +144,7 @@ function autentification() {
                     document.getElementById('butCreateReport').style.visibility = 'visible';
                 }
                 alert('Login succesfull');
-                addCircle();
+                addCircleMain();
             } else {
                 alert('Login failed. Please try again.');
             }
@@ -148,9 +160,6 @@ function toggleMenu() {
     menu.style.display = (menu.style.display === "block") ? "none" : "block";
 }
 
-function viewAccountInfo() {
-    alert("Просмотр информации об аккаунте");
-}
 
 function viewInsurancePolicies() {
     alert("Просмотр зарегистрированных страховых полисов");
@@ -161,16 +170,16 @@ function logout() {
     hideCircle();
 }
 
-function addCircle(){
+function addCircleMain(){
     $('#loginModal').modal('hide');
     const navbarNav = document.querySelector('.navbar-nav');
     navbarNav.style.visibility = 'hidden';
     const circle = document.getElementById('circle');
     circle.style.display = 'block';
 
-    const emailElement = document.createElement('span'); // Создаем DOM-элемент span
-    emailElement.textContent = emailText; // Устанавливаем текст содержимого
-    emailElement.style.display = 'none'; // Устанавливаем свойство display
+    const emailElement = document.createElement('span');
+    emailElement.textContent = emailText;
+    emailElement.style.display = 'none';
 
     circle.appendChild(emailElement); // Добавляем элемент как потомка элемента
 
@@ -199,14 +208,13 @@ function hideCircle(){
 }
 
 function redirectToMainPage(){
-    window.location.href = "/main";
+    window.location.href = "/main?email=" + encodeURIComponent(email);
 }
 function redirectToInsurancePolicyRegistration() {
     const email = document.getElementById('inputEmailEmail').value;
     window.location.href = "/newInsurance?email=" + encodeURIComponent(email);
 }
-
-
-function redirectToReportGeneration() {
-    window.location.href = "link_to_report_generation_page.html";
+function viewAccountInfo() {
+    const email = document.getElementById('inputEmailEmail').value;
+    window.location.href = "/infoForAccount?email=" + encodeURIComponent(email);
 }
