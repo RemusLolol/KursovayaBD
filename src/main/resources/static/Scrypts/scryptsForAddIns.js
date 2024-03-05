@@ -1,6 +1,7 @@
+let email;
 window.onload = function() {
     const params = new URLSearchParams(window.location.search);
-    const email = params.get('email');
+    email = params.get('email');
 
     if (email) {
         addCircle(email);
@@ -17,7 +18,7 @@ function addCircle(email) {
     emailElement.textContent = email;
     emailElement.style.display = 'none';
 
-    circle.appendChild(emailElement); // Добавляем элемент как потомка элемента
+    circle.appendChild(emailElement);
 
     circle.addEventListener('mouseenter', function() {
         emailElement.style.display = 'block';
@@ -31,14 +32,46 @@ function addCircle(email) {
     });
 }
 
-function regNewInsurances(){
-    const selectTypeFace = document.getElementById('selectPerson').value;
-    const selectTypeIns = document.getElementById('selectInsuranceType').value;
-    const inputAmount = document.getElementById('insuranceAmount').value;
-    const inputDateEnd = document.getElementById('inputDateEnd').value;
+function regNewInsurances() {
+    const clientemail = email
+    console.log(clientemail);
+    const typeface = document.getElementById('selectPerson').value;
+    const typeinsurance = document.getElementById('selectInsuranceType').value;
+    const suminsured = document.getElementById('insuranceAmount').value;
+    const contract_end_date = document.getElementById('inputDateEnd').value;
+    const today = new Date().toISOString().split('T')[0];
 
+    const newInsurance = {
+        clientemail: clientemail,
+        typeface: typeface,
+        typeinsurance: typeinsurance,
+        suminsured: suminsured,
+        contract_start_date : today,
+        contract_end_date: contract_end_date,
+        statuscheckedinsured: "Не проверено"
+    };
 
+    fetch('/addNewInsuances', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(newInsurance)
+    })
+        .then(response => {
+            if (response.ok) {
+                alert('Страховка успешно зарегистрирована.');
+                // Опционально: перенаправить пользователя на другую страницу или обновить текущую страницу
+            } else {
+                alert('Ошибка при регистрации страховки. Пожалуйста, попробуйте еще раз.');
+            }
+        })
+        .catch(error => {
+            console.error('Ошибка при отправке запроса:', error);
+            alert('Произошла ошибка. Пожалуйста, попробуйте еще раз позже.');
+        });
 }
+
 
 function changeTypeFace() {
     const selectTypeIns = document.getElementById('selectInsuranceType');

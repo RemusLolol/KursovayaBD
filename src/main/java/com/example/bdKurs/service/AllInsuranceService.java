@@ -1,6 +1,6 @@
 package com.example.bdKurs.service;
 
-import com.example.bdKurs.model.AllInsurance;
+import com.example.bdKurs.model.Allinsurance;
 import com.example.bdKurs.repository.AllInsuranceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,11 +17,11 @@ public class AllInsuranceService {
         this.allInsuranceRepository = allInsuranceRepository;
     }
 
-    public List<AllInsurance> getAllInsurances() {
+    public List<Allinsurance> getAllInsurances() {
         return allInsuranceRepository.findAll();
     }
 
-    public AllInsurance addInsurance(AllInsurance insurance) {
+    public Allinsurance addInsurance(Allinsurance insurance) {
         return allInsuranceRepository.save(insurance);
     }
 }

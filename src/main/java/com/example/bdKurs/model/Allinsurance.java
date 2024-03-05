@@ -9,7 +9,7 @@ import java.util.Date;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class AllInsurance {
+public class Allinsurance {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -17,7 +17,7 @@ public class AllInsurance {
     private String clientemail;
     private String typeface;
     private String typeinsurance;
-    private Float suninsured;
+    private Float suminsured;
     private Date contract_start_date;
     private Date contract_end_date;
     private String statuscheckedinsured;

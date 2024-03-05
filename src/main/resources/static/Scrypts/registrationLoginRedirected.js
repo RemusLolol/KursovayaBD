@@ -202,8 +202,8 @@ function redirectToMainPage(){
     window.location.href = "/main";
 }
 function redirectToInsurancePolicyRegistration() {
-    const email = document.getElementById('inputEmailEmail').value; // Получаем email пользователя
-    window.location.href = "/newInsurance?email=" + encodeURIComponent(email); // Перенаправляем пользователя на новую страницу с передачей email в качестве параметра
+    const email = document.getElementById('inputEmailEmail').value;
+    window.location.href = "/newInsurance?email=" + encodeURIComponent(email);
 }
 
 
