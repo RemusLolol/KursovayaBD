@@ -8,7 +8,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+<<<<<<< HEAD
 import org.springframework.http.HttpStatus;
+=======
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.http.HttpStatus;
+
+import java.util.List;
+>>>>>>> origin/main
 import java.util.Map;
 
 @Controller
@@ -31,6 +38,12 @@ public class InfoForAccountController {
         String email = requestBody.get("email");
         Clients clientsEmail = clientService.getClientByEmail(email);
         if (clientsEmail != null) {
+<<<<<<< HEAD
+=======
+            System.out.println(clientsEmail.getClientname());
+            System.out.println(clientsEmail.getClientsurname());
+            System.out.println(clientsEmail.getEmail());
+>>>>>>> origin/main
             return new ResponseEntity<>(clientsEmail, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);

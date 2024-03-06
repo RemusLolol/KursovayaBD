@@ -1,15 +1,3 @@
-window.onload = function() {
-    const params = new URLSearchParams(window.location.search);
-    const email = params.get('email');
-
-    if (email && sessionStorage.getItem('visited') === 'true') {
-        addCircleMain(email);
-        document.getElementById('butCreateIns').style.visibility = 'visible';
-        document.getElementById('butCreateReport').style.visibility = 'visible';
-    }
-    sessionStorage.setItem('visited', 'true');
-};
-
 function regClient() {
     event.preventDefault();
 
@@ -109,7 +97,7 @@ function regEmployee() {
         });
 
 }
-let emailText;
+let emailText
 function autentification() {
     event.preventDefault();
 
@@ -144,7 +132,7 @@ function autentification() {
                     document.getElementById('butCreateReport').style.visibility = 'visible';
                 }
                 alert('Login succesfull');
-                addCircleMain();
+                addCircle();
             } else {
                 alert('Login failed. Please try again.');
             }
@@ -160,18 +148,31 @@ function toggleMenu() {
     menu.style.display = (menu.style.display === "block") ? "none" : "block";
 }
 
-function addCircleMain(){
+function viewAccountInfo() {
+    alert("Просмотр информации об аккаунте");
+}
+
+function viewInsurancePolicies() {
+    alert("Просмотр зарегистрированных страховых полисов");
+}
+
+function logout() {
+    window.location.href = "/main";
+    hideCircle();
+}
+
+function addCircle(){
     $('#loginModal').modal('hide');
     const navbarNav = document.querySelector('.navbar-nav');
     navbarNav.style.visibility = 'hidden';
     const circle = document.getElementById('circle');
     circle.style.display = 'block';
 
-    const emailElement = document.createElement('span');
-    emailElement.textContent = emailText;
-    emailElement.style.display = 'none';
+    const emailElement = document.createElement('span'); // Создаем DOM-элемент span
+    emailElement.textContent = emailText; // Устанавливаем текст содержимого
+    emailElement.style.display = 'none'; // Устанавливаем свойство display
 
-    circle.appendChild(emailElement);
+    circle.appendChild(emailElement); // Добавляем элемент как потомка элемента
 
     circle.addEventListener('mouseenter', function() {
         emailElement.style.display = 'block';
@@ -198,28 +199,14 @@ function hideCircle(){
 }
 
 function redirectToMainPage(){
-    let params = new URLSearchParams(window.location.search).get('email');
-    window.location.href = "/main?email=" + encodeURIComponent(params);
+    window.location.href = "/main";
 }
 function redirectToInsurancePolicyRegistration() {
     const email = document.getElementById('inputEmailEmail').value;
     window.location.href = "/newInsurance?email=" + encodeURIComponent(email);
 }
-function viewAccountInfo() {
-    let params = new URLSearchParams(window.location.search).get('email');
-    if(params === null){
-        params = document.getElementById('inputEmailEmail').value;
-    }
-    window.location.href = "/infoForAccount?email=" + encodeURIComponent(params);
-}
-function viewInsurancePolicies() {
-    let params = new URLSearchParams(window.location.search).get('email');
-    if(params === null){
-        params = document.getElementById('inputEmailEmail').value;
-    }
-    window.location.href = "/infoForInsurances?email=" + encodeURIComponent(params);
-}
-function logout() {
-    window.location.href = "/main";
-    hideCircle();
+
+
+function redirectToReportGeneration() {
+    window.location.href = "link_to_report_generation_page.html";
 }
