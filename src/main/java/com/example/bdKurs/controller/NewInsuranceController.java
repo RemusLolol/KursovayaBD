@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 public class NewInsuranceController {
     private final AllInsuranceService allInsuranceService;
 
-    @Autowired
+     @Autowired
     public NewInsuranceController(AllInsuranceService allInsuranceService){
         this.allInsuranceService = allInsuranceService;
     }
@@ -24,10 +24,10 @@ public class NewInsuranceController {
         return "createNewInsurance";
     }
 
-    @PostMapping("/addNewInsuances")
-    public ResponseEntity<String> addNewInsuances(@RequestBody Allinsurance allInsurance) {
+    @PostMapping("/addNewInsurances")
+    public ResponseEntity<String> addNewInsurances(@RequestBody Allinsurance allInsurance) {
         try {
-            Allinsurance savedInsurance = allInsuranceService.addInsurance(allInsurance);
+            allInsuranceService.addInsurance(allInsurance);
             return ResponseEntity.status(HttpStatus.CREATED).body("Страховка успешно зарегистрирована.");
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Произошла ошибка при регистрации страховки. Пожалуйста, попробуйте еще раз.");

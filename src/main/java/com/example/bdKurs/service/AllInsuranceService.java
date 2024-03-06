@@ -24,4 +24,8 @@ public class AllInsuranceService {
     public Allinsurance addInsurance(Allinsurance insurance) {
         return allInsuranceRepository.save(insurance);
     }
+
+    public List<Allinsurance> getInsurancesByEmail(String clientEmail) {
+        return allInsuranceRepository.findAllByClientemail(clientEmail);
+    }
 }

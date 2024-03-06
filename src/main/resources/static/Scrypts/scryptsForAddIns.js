@@ -51,7 +51,7 @@ function regNewInsurances() {
         statuscheckedinsured: "Не проверено"
     };
 
-    fetch('/addNewInsuances', {
+    fetch('/addNewInsurances', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -61,7 +61,6 @@ function regNewInsurances() {
         .then(response => {
             if (response.ok) {
                 alert('Страховка успешно зарегистрирована.');
-                // Опционально: перенаправить пользователя на другую страницу или обновить текущую страницу
             } else {
                 alert('Ошибка при регистрации страховки. Пожалуйста, попробуйте еще раз.');
             }

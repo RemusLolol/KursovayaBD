@@ -109,7 +109,7 @@ function regEmployee() {
         });
 
 }
-let emailText
+let emailText;
 function autentification() {
     event.preventDefault();
 
@@ -160,16 +160,6 @@ function toggleMenu() {
     menu.style.display = (menu.style.display === "block") ? "none" : "block";
 }
 
-
-function viewInsurancePolicies() {
-    alert("Просмотр зарегистрированных страховых полисов");
-}
-
-function logout() {
-    window.location.href = "/main";
-    hideCircle();
-}
-
 function addCircleMain(){
     $('#loginModal').modal('hide');
     const navbarNav = document.querySelector('.navbar-nav');
@@ -181,7 +171,7 @@ function addCircleMain(){
     emailElement.textContent = emailText;
     emailElement.style.display = 'none';
 
-    circle.appendChild(emailElement); // Добавляем элемент как потомка элемента
+    circle.appendChild(emailElement);
 
     circle.addEventListener('mouseenter', function() {
         emailElement.style.display = 'block';
@@ -208,13 +198,28 @@ function hideCircle(){
 }
 
 function redirectToMainPage(){
-    window.location.href = "/main?email=" + encodeURIComponent(email);
+    let params = new URLSearchParams(window.location.search).get('email');
+    window.location.href = "/main?email=" + encodeURIComponent(params);
 }
 function redirectToInsurancePolicyRegistration() {
     const email = document.getElementById('inputEmailEmail').value;
     window.location.href = "/newInsurance?email=" + encodeURIComponent(email);
 }
 function viewAccountInfo() {
-    const email = document.getElementById('inputEmailEmail').value;
-    window.location.href = "/infoForAccount?email=" + encodeURIComponent(email);
+    let params = new URLSearchParams(window.location.search).get('email');
+    if(params === null){
+        params = document.getElementById('inputEmailEmail').value;
+    }
+    window.location.href = "/infoForAccount?email=" + encodeURIComponent(params);
+}
+function viewInsurancePolicies() {
+    let params = new URLSearchParams(window.location.search).get('email');
+    if(params === null){
+        params = document.getElementById('inputEmailEmail').value;
+    }
+    window.location.href = "/infoForInsurances?email=" + encodeURIComponent(params);
+}
+function logout() {
+    window.location.href = "/main";
+    hideCircle();
 }
