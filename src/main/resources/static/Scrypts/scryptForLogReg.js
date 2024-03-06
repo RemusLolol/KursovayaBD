@@ -1,3 +1,14 @@
+window.onload = function() {
+    const params = new URLSearchParams(window.location.search);
+    const email = params.get('email');
+
+    if (email && sessionStorage.getItem('visited') === 'true') {
+        addCircle(email);
+    }
+
+    sessionStorage.setItem('visited', 'true');
+};
+
 function regClient() {
     event.preventDefault();
 
@@ -128,11 +139,9 @@ function autentification() {
                 if (userType === 'employee') {
                     const emailText = document.createElement('span');
                 } else if (userType === 'customer') {
-                    document.getElementById('butCreateIns').style.visibility = 'visible';
-                    document.getElementById('butCreateReport').style.visibility = 'visible';
                 }
                 alert('Login succesfull');
-                addCircle();
+                addCircle(email);
             } else {
                 alert('Login failed. Please try again.');
             }
@@ -143,25 +152,7 @@ function autentification() {
         });
 }
 
-function toggleMenu() {
-    const menu = document.getElementById("menu");
-    menu.style.display = (menu.style.display === "block") ? "none" : "block";
-}
-
-function viewAccountInfo() {
-    alert("Просмотр информации об аккаунте");
-}
-
-function viewInsurancePolicies() {
-    alert("Просмотр зарегистрированных страховых полисов");
-}
-
-function logout() {
-    window.location.href = "/main";
-    hideCircle();
-}
-
-function addCircle(){
+function addCircle(emailText){
     $('#loginModal').modal('hide');
     const navbarNav = document.querySelector('.navbar-nav');
     navbarNav.style.visibility = 'hidden';
@@ -184,29 +175,7 @@ function addCircle(){
     circle.addEventListener('mouseleave', function() {
         emailElement.style.display = 'none';
     });
-}
-
-function hideCircle(){
-    const circle = document.getElementById('circle');
-    circle.style.display = 'none';
-    const menu = document.getElementById('menu');
-    menu.style.display = 'none';
-    const navbarNav = document.querySelector('.navbar-nav');
-    navbarNav.style.visibility = 'visible';
-    document.getElementById('butCreateIns').style.visibility = 'hidden';
-    document.getElementById('butCreateReport').style.visibility = 'hidden';
-
-}
-
-function redirectToMainPage(){
-    window.location.href = "/main";
-}
-function redirectToInsurancePolicyRegistration() {
-    const email = document.getElementById('inputEmailEmail').value;
-    window.location.href = "/newInsurance?email=" + encodeURIComponent(email);
-}
-
-
-function redirectToReportGeneration() {
-    window.location.href = "link_to_report_generation_page.html";
+    // Временная
+    document.getElementById('butCreateIns').style.visibility = 'visible';
+    document.getElementById('butCreateReport').style.visibility = 'visible';
 }
