@@ -9,7 +9,6 @@ window.onload = function() {
     changeTypeFace();
 };
 
-
 function addCircle(email) {
     const circle = document.getElementById('circle');
     circle.style.display = 'block';
@@ -70,7 +69,6 @@ function regNewInsurances() {
             alert('Произошла ошибка. Пожалуйста, попробуйте еще раз позже.');
         });
 }
-
 
 function changeTypeFace() {
     const selectTypeIns = document.getElementById('selectInsuranceType');

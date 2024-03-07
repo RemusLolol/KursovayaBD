@@ -180,11 +180,13 @@ function addCircle(emailText){
 
 function changeMenuCircle(){
     const role = new URLSearchParams(window.location.search).get('role');
+    const but1 = document.getElementById('butCreateIns');
+    const but2 = document.getElementById('butCreateReport');
+    but1.style.visibility = 'visible';
+    but2.style.visibility = 'visible'
 
     if(role === 'client') {
-        document.getElementById('butCreateIns').style.visibility = 'visible';
-        document.getElementById('butCreateReport').style.visibility = 'visible';
-
+        but1.innerText = "Зарегестрировать страховой полис"
         const secondButtonMenu = document.getElementById('secondButtonMenu');
         secondButtonMenu.innerText = ' Просмотреть зарегистрированные страховые полисы';
         const icon = document.createElement('i');
@@ -192,6 +194,7 @@ function changeMenuCircle(){
         secondButtonMenu.prepend(icon);
     }
     else{
+        but1.innerText = "Проверить статус страховых полисов"
         const secondButtonMenu = document.getElementById('secondButtonMenu');
         secondButtonMenu.innerText = ' Просмотреть все страховые полисы';
         const icon = document.createElement('i');

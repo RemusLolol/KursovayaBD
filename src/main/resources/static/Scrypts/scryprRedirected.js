@@ -28,7 +28,11 @@ function redirectToMainPage(){
 function redirectToInsurancePolicyRegistration() {
     let email= new URLSearchParams(window.location.search).get('email');
     const role = new URLSearchParams(window.location.search).get('role');
-    window.location.href = "/newInsurance?email=" + encodeURIComponent(email) + "&role=" + encodeURIComponent(role);
+    if(role === 'client') {
+        window.location.href = "/newInsurance?email=" + encodeURIComponent(email) + "&role=" + encodeURIComponent(role);
+    }else {
+        window.location.href = "/checkStatus?email=" + encodeURIComponent(email) + "&role=" + encodeURIComponent(role);
+    }
 }
 function viewAccountInfo() {
     let email= new URLSearchParams(window.location.search).get('email');
@@ -45,8 +49,4 @@ function viewInsurancePolicies() {
     }else {
         window.location.href = "/showAllInsurances?email=" + encodeURIComponent(email) + "&role=" + encodeURIComponent(role);
     }
-}
-
-function redirectToReportGeneration() {
-    window.location.href = "link_to_report_generation_page.html";
 }
