@@ -39,8 +39,10 @@ CREATE TABLE allInsurance(
      statusCheckedInsured VARCHAR(255) NOT NULL
 );
 
-CREATE TABLE checkedInsurances(
-    id SERIAL PRIMARY KEY,
-    insurance_claim_check VARCHAR(255) NOT NULL,
-    payment_verification_check VARCHAR(255) NOT NULL
+CREATE TABLE checkedInsurances (
+       id SERIAL PRIMARY KEY,
+       id_document_insurances INTEGER,
+       status_checked_insured VARCHAR(255),
+       insurance_claim_check VARCHAR(255) NOT NULL,
+       payment_verification_check VARCHAR(255) NOT NULL
 );

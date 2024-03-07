@@ -1,7 +1,9 @@
 package com.example.bdKurs.controller;
 
 import com.example.bdKurs.model.Allinsurance;
+import com.example.bdKurs.model.Checkedinsurances;
 import com.example.bdKurs.service.AllInsuranceService;
+import com.example.bdKurs.service.CheckedinsurancesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
