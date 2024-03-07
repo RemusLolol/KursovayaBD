@@ -40,9 +40,12 @@ function viewAccountInfo() {
 function viewInsurancePolicies() {
     let email= new URLSearchParams(window.location.search).get('email');
     const role = new URLSearchParams(window.location.search).get('role');
-    window.location.href = "/infoForInsurances?email=" + encodeURIComponent(email)  + "&role=" + encodeURIComponent(role);
+    if(role === 'client') {
+        window.location.href = "/infoForInsurances?email=" + encodeURIComponent(email) + "&role=" + encodeURIComponent(role);
+    }else {
+        window.location.href = "/showAllInsurances?email=" + encodeURIComponent(email) + "&role=" + encodeURIComponent(role);
+    }
 }
-
 
 function redirectToReportGeneration() {
     window.location.href = "link_to_report_generation_page.html";
