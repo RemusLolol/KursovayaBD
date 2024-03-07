@@ -1,6 +1,7 @@
 package com.example.bdKurs.service;
 
 // EmployeesService.java
+import com.example.bdKurs.model.Clients;
 import com.example.bdKurs.model.Employees;
 import com.example.bdKurs.repository.EmployeesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,5 +32,9 @@ public class EmployeesService {
 
     public boolean emlpExistsByEmailAndPassword(String email, String password_hash) {
         return employeesRepository.existsByEmailAndPasswordEmployees(email, password_hash);
+    }
+
+    public Employees getEmployeeByEmail(String email) {
+        return employeesRepository.findByEmail(email);
     }
 }

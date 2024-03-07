@@ -124,7 +124,7 @@ function autentification() {
     let url = '';
     if (userType === 'employee') {
         url = '/loginEmployee';
-    } else if (userType === 'customer') {
+    } else if (userType === 'client') {
         url = '/loginClient';
     }
     fetch(url, {
@@ -136,12 +136,13 @@ function autentification() {
     })
         .then(response => {
             if (response.ok) {
+                let role;
                 if (userType === 'employee') {
-                    const emailText = document.createElement('span');
-                } else if (userType === 'customer') {
+                    role = 'employee;'
+                } else if (userType === 'client') {
+                    role = 'client';
                 }
-                alert('Login succesfull');
-                addCircle(email);
+                window.location.href = "/main?email=" + encodeURIComponent(email) + "&role=" + encodeURIComponent(role);
             } else {
                 alert('Login failed. Please try again.');
             }
@@ -156,15 +157,13 @@ function addCircle(emailText){
     $('#loginModal').modal('hide');
     const navbarNav = document.querySelector('.navbar-nav');
     navbarNav.style.visibility = 'hidden';
+
     const circle = document.getElementById('circle');
     circle.style.display = 'block';
-
-    const emailElement = document.createElement('span'); // Создаем DOM-элемент span
-    emailElement.textContent = emailText; // Устанавливаем текст содержимого
-    emailElement.style.display = 'none'; // Устанавливаем свойство display
-
-    circle.appendChild(emailElement); // Добавляем элемент как потомка элемента
-
+    const emailElement = document.createElement('span');
+    emailElement.textContent = emailText;
+    emailElement.style.display = 'none';
+    circle.appendChild(emailElement);
     circle.addEventListener('mouseenter', function() {
         emailElement.style.display = 'block';
         emailElement.style.position = 'absolute';
@@ -175,7 +174,28 @@ function addCircle(emailText){
     circle.addEventListener('mouseleave', function() {
         emailElement.style.display = 'none';
     });
-    // Временная
-    document.getElementById('butCreateIns').style.visibility = 'visible';
-    document.getElementById('butCreateReport').style.visibility = 'visible';
+
+    changeMenuCircle();
+}
+
+function changeMenuCircle(){
+    const role = new URLSearchParams(window.location.search).get('role');
+
+    if(role === 'client') {
+        document.getElementById('butCreateIns').style.visibility = 'visible';
+        document.getElementById('butCreateReport').style.visibility = 'visible';
+
+        const secondButtonMenu = document.getElementById('secondButtonMenu');
+        secondButtonMenu.innerText = ' Просмотреть зарегистрированные страховые полисы';
+        const icon = document.createElement('i');
+        icon.classList.add('fas', 'fa-file-alt');
+        secondButtonMenu.prepend(icon);
+    }
+    else{
+        const secondButtonMenu = document.getElementById('secondButtonMenu');
+        secondButtonMenu.innerText = ' Просмотреть все страховые полисы';
+        const icon = document.createElement('i');
+        icon.classList.add('fas', 'fa-file-alt');
+        secondButtonMenu.prepend(icon);
+    }
 }

@@ -249,7 +249,7 @@
                                 <label for="userType">Выберите тип пользователя:</label>
                                 <select class="form-control" id="userType">
                                     <option value="employee">Работник</option>
-                                    <option value="customer">Клиент</option>
+                                    <option value="client">Клиент</option>
                                 </select>
                             </div>
                             <!-- Форма ввода данных -->
@@ -273,7 +273,7 @@
             <div class="menu" id="menu">
                 <ul>
                     <li onclick="viewAccountInfo()"><i class="fas fa-user-circle"></i> Просмотреть информацию об аккаунте</li>
-                    <li onclick="viewInsurancePolicies()"><i class="fas fa-file-alt"></i> Просмотреть зарегистрированные страховые полисы</li>
+                    <li id="secondButtonMenu" onclick="viewInsurancePolicies()"><i class="fas fa-file-alt"></i> Просмотреть зарегистрированные страховые полисы</li>
                     <li onclick="logout()" class="logout"><i class="fas fa-sign-out-alt"></i> Выйти из аккаунта</li>
                 </ul>
             </div>

@@ -21,47 +21,26 @@ function hideCircle(){
 }
 
 function redirectToMainPage(){
-    const params = new URLSearchParams(window.location.search);
-    email = params.get('email');
-    window.location.href = "/main?email=" + encodeURIComponent(email);
+    const email = new URLSearchParams(window.location.search).get('email');
+    const role = new URLSearchParams(window.location.search).get('role');
+    window.location.href = "/main?email=" + encodeURIComponent(email) + "&role=" + encodeURIComponent(role);
 }
 function redirectToInsurancePolicyRegistration() {
-    let email;
-    if (document.getElementById('inputEmailEmail')) {
-        email = document.getElementById('inputEmailEmail').value;
-        console.log(1);
-    }
-    if (!email) {
-        email = new URLSearchParams(window.location.search).get('email');
-        console.log(email);
-    }
-    window.location.href = "/newInsurance?email=" + encodeURIComponent(email);
+    let email= new URLSearchParams(window.location.search).get('email');
+    const role = new URLSearchParams(window.location.search).get('role');
+    window.location.href = "/newInsurance?email=" + encodeURIComponent(email) + "&role=" + encodeURIComponent(role);
 }
 function viewAccountInfo() {
-    let email;
-    if (document.getElementById('inputEmailEmail')) {
-        email = document.getElementById('inputEmailEmail').value;
-        console.log(1);
-    }
-    if (!email) {
-        email = new URLSearchParams(window.location.search).get('email');
-        console.log(email);
-    }
-    window.location.href = "/infoForAccount?email=" + encodeURIComponent(email);
+    let email= new URLSearchParams(window.location.search).get('email');
+    const role = new URLSearchParams(window.location.search).get('role');
+    window.location.href = "/infoForAccount?email=" + encodeURIComponent(email) + "&role=" + encodeURIComponent(role);
 
 }
 
 function viewInsurancePolicies() {
-    let email;
-    if (document.getElementById('inputEmailEmail')) {
-        email = document.getElementById('inputEmailEmail').value;
-        console.log(1);
-    }
-    if (!email) {
-        email = new URLSearchParams(window.location.search).get('email');
-        console.log(email);
-    }
-    window.location.href = "/infoForInsurances?email=" + encodeURIComponent(email);
+    let email= new URLSearchParams(window.location.search).get('email');
+    const role = new URLSearchParams(window.location.search).get('role');
+    window.location.href = "/infoForInsurances?email=" + encodeURIComponent(email)  + "&role=" + encodeURIComponent(role);
 }
 
 

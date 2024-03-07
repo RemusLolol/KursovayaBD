@@ -1,7 +1,10 @@
 package com.example.bdKurs.controller;
 
 import com.example.bdKurs.model.Clients;
+import com.example.bdKurs.model.Employees;
+import com.example.bdKurs.repository.EmployeesRepository;
 import com.example.bdKurs.service.ClientService;
+import com.example.bdKurs.service.EmployeesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -15,10 +18,12 @@ import java.util.Map;
 public class InfoForAccountController {
 
     private final ClientService clientService;
+    private final EmployeesService employeesService;
 
     @Autowired
-    public InfoForAccountController(ClientService clientService) {
+    public InfoForAccountController(ClientService clientService, EmployeesService employeesService) {
         this.clientService = clientService;
+        this.employeesService = employeesService;
     }
 
     @GetMapping("/infoForAccount")
@@ -26,12 +31,23 @@ public class InfoForAccountController {
         return "infoForAcc";
     }
 
-    @PostMapping("/getInfoForAccount")
-    public ResponseEntity<Clients> getInfoForAccount(@RequestBody Map<String, String> requestBody) {
+    @PostMapping("/getInfoForAccountClient")
+    public ResponseEntity<Clients> getInfoForAccountClient(@RequestBody Map<String, String> requestBody) {
         String email = requestBody.get("email");
         Clients clientsEmail = clientService.getClientByEmail(email);
         if (clientsEmail != null) {
             return new ResponseEntity<>(clientsEmail, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @PostMapping("getInfoForAccountEmployee")
+    public ResponseEntity<Employees> getInfoForAccountEmployee(@RequestBody Map<String, String> requestBody) {
+        String email = requestBody.get("email");
+        Employees employeesEmail = employeesService.getEmployeeByEmail(email);
+        if (employeesEmail != null) {
+            return new ResponseEntity<>(employeesEmail, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
