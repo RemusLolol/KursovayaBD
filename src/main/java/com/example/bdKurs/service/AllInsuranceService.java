@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AllInsuranceService {
@@ -27,5 +28,9 @@ public class AllInsuranceService {
 
     public List<Allinsurance> getInsurancesByEmail(String clientEmail) {
         return allInsuranceRepository.findAllByClientemail(clientEmail);
+    }
+
+    public Optional<Allinsurance> findById(Long id) {
+        return allInsuranceRepository.findById(id);
     }
 }

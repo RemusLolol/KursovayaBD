@@ -35,8 +35,7 @@ CREATE TABLE allInsurance(
      typeInsurance VARCHAR(255) NOT NULL,
      sumInsured FLOAT NOT NULL,
      contract_start_date DATE NOT NULL,
-     contract_end_date DATE NOT NULL,
-     statusCheckedInsured VARCHAR(255) NOT NULL
+     contract_end_date DATE NOT NULL
 );
 
 CREATE TABLE checkedInsurances (

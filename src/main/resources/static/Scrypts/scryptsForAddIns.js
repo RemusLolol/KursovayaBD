@@ -45,8 +45,7 @@
             typeinsurance: typeinsurance,
             suminsured: suminsured,
             contract_start_date : today,
-            contract_end_date: contract_end_date,
-            statuscheckedinsured: "Не проверено"
+            contract_end_date: contract_end_date
         };
 
         fetch('/addNewInsurances', {

@@ -35,7 +35,7 @@ public class NewInsuranceController {
 
             Checkedinsurances checkedInsurance = new Checkedinsurances();
             checkedInsurance.setId_document_insurances(allInsurance.getId());
-            checkedInsurance.setStatusCheckedInsured(allInsurance.getStatuscheckedinsured());
+            checkedInsurance.setStatusCheckedInsured("Не проверено");
             checkedInsurance.setInsurance_claim_check("Не подтверждено");
             checkedInsurance.setPayment_verification_check("Не выплачено");
 

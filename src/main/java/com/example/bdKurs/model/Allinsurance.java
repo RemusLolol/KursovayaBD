@@ -20,5 +20,4 @@ public class Allinsurance {
     private Float suminsured;
     private Date contract_start_date;
     private Date contract_end_date;
-    private String statuscheckedinsured;
 }
