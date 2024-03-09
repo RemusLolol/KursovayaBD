@@ -45,3 +45,17 @@ CREATE TABLE checkedInsurances (
        insurance_claim_check VARCHAR(255) NOT NULL,
        payment_verification_check VARCHAR(255) NOT NULL
 );
+
+CREATE TABLe typeInsurances(
+    id SERIAL PRIMARY KEY,
+    typeFace VARCHAR(255) NOT NULL,
+    typeInsurances VARCHAR(255) NOT NULL
+);
+
+create table insurancePayments(
+    id SERIAL PRIMARY KEY,
+    id_document_insurances INTEGER NOT NULL,
+    insurance_case VARCHAR(255) NOT NULL,
+    severityInsuredEvent VARCHAR(255) NOT NULL,
+    amount_payment float NOT NULL
+);

@@ -8,7 +8,13 @@ function logout() {
     hideCircle();
 }
 
-function hideCircle(){
+function redirectToMainPage(){
+    const email = new URLSearchParams(window.location.search).get('email');
+    const role = new URLSearchParams(window.location.search).get('role');
+    window.location.href = "/main?email=" + encodeURIComponent(email) + "&role=" + encodeURIComponent(role);
+}
+
+function hideCircle() {
     const circle = document.getElementById('circle');
     circle.style.display = 'none';
     const menu = document.getElementById('menu');
@@ -17,14 +23,8 @@ function hideCircle(){
     navbarNav.style.visibility = 'visible';
     document.getElementById('butCreateIns').style.visibility = 'hidden';
     document.getElementById('butCreateReport').style.visibility = 'hidden';
-
 }
 
-function redirectToMainPage(){
-    const email = new URLSearchParams(window.location.search).get('email');
-    const role = new URLSearchParams(window.location.search).get('role');
-    window.location.href = "/main?email=" + encodeURIComponent(email) + "&role=" + encodeURIComponent(role);
-}
 function redirectToInsurancePolicyRegistration() {
     let email= new URLSearchParams(window.location.search).get('email');
     const role = new URLSearchParams(window.location.search).get('role');
