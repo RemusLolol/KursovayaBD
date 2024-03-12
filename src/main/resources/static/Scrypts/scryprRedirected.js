@@ -50,3 +50,13 @@ function viewInsurancePolicies() {
         window.location.href = "/showAllInsurances?email=" + encodeURIComponent(email) + "&role=" + encodeURIComponent(role);
     }
 }
+
+function addCaseIns() {
+    let email= new URLSearchParams(window.location.search).get('email');
+    const role = new URLSearchParams(window.location.search).get('role');
+    if(role === 'client') {
+        window.location.href = "/addCase?email=" + encodeURIComponent(email) + "&role=" + encodeURIComponent(role);
+    }else {
+        window.location.href = "/checkPayments?email=" + encodeURIComponent(email) + "&role=" + encodeURIComponent(role);
+    }
+}

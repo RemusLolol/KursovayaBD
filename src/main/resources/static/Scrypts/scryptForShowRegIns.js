@@ -27,9 +27,8 @@ function getInsurances(email){
                             <td>${insurance.typeface}</td>
                             <td>${insurance.typeinsurance}</td>
                             <td>${insurance.suminsured}</td>
-                            <td>${insurance.contract_start_date}</td>
-                            <td>${insurance.contract_end_date}</td>
-                            <td>${insurance.statuscheckedinsured}</td>
+                            <td>${formatDateShowReg(insurance.contract_start_date)}</td>
+                            <td>${formatDateShowReg(insurance.contract_end_date)}</td>
                         `;
                 tbody.appendChild(row);
             });
@@ -60,4 +59,8 @@ function addCircleShowAllIns(email) {
     circle.addEventListener('mouseleave', function() {
         emailElement.style.display = 'none';
     });
+}
+
+function formatDateShowReg(date) {
+    return new Date(date).toLocaleDateString('ru-RU');
 }

@@ -200,5 +200,6 @@ function changeMenuCircle(){
         const icon = document.createElement('i');
         icon.classList.add('fas', 'fa-file-alt');
         secondButtonMenu.prepend(icon);
+        but2.innerText = "Проверить выплаты и страховые случаи";
     }
 }
