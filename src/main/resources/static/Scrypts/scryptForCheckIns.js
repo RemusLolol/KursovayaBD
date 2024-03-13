@@ -56,6 +56,7 @@ function getAllCheckedInsurances(){
                             <select style="background-color: #343a40; color: #ffffff" class="form-control">
                                 <option value="paid" ${checkedInsurances.payment_verification_check === 'Выплачено' ? 'selected' : ''}>Выплачено</option>
                                 <option value="not_paid" ${checkedInsurances.payment_verification_check === 'Не выплачено' ? 'selected' : ''}>Не выплачено</option>
+                                <option value="in_progress" ${checkedInsurances.payment_verification_check === 'В процессе' ? 'selected' : ''}>В процессе</option>
                             </select>
                         </td>`;
 
@@ -156,7 +157,9 @@ function saveChanges() {
             id_document_insurances: id,
             statusCheckedInsured: statusCheckedInsured === 'checked' ? 'Проверено' : 'Не проверено',
             insurance_claim_check: insuranceClaimCheck === 'confirmed' ? 'Подтверждено' : 'Не подтверждено',
-            payment_verification_check: paymentVerificationCheck === 'paid' ? 'Выплачено' : 'Не выплачено'
+            payment_verification_check: paymentVerificationCheck === 'paid' ? 'Выплачено'
+                : paymentVerificationCheck === 'not_paid' ? 'Не выплачено'
+                    : 'В процессе'
         });
     }
 

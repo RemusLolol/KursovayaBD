@@ -37,7 +37,10 @@ function regNewInsurances() {
     const suminsured = document.getElementById('insuranceAmount').value;
     const contract_end_date = document.getElementById('inputDateEnd').value;
     const today = new Date().toISOString().split('T')[0];
-
+    if (!clientemail || !typeface || !typeinsurance || !suminsured || !contract_end_date) {
+        alert('Пожалуйста, заполните все поля формы.');
+        return;
+    }
     const newInsurance = {
         clientemail: clientemail,
         typeface: typeface,
@@ -47,6 +50,8 @@ function regNewInsurances() {
         contract_end_date: contract_end_date
     };
 
+    console.log(newInsurance);
+
     fetch('/addNewInsurances', {
         method: 'POST',
         headers: {
@@ -55,11 +60,7 @@ function regNewInsurances() {
         body: JSON.stringify(newInsurance)
     })
         .then(response => {
-            if (response.ok) {
-                alert('Страховка успешно зарегистрирована.');
-            } else {
-                alert('Ошибка при регистрации страховки. Пожалуйста, попробуйте еще раз.');
-            }
+            alert('Страховка успешно зарегистрирована.');
             addCircle(email);
         })
         .catch(error => {
@@ -92,7 +93,7 @@ function changeTypeFace() {
 function addOptions(select, optionsArray) {
     optionsArray.forEach(option => {
         const optionElement = document.createElement('option');
-        optionElement.value = option.id;
+        optionElement.value = option.typeinsurances;
         optionElement.textContent = option.typeinsurances;
         select.appendChild(optionElement);
     });

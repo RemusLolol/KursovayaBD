@@ -50,20 +50,16 @@ public class NewInsuranceController {
 
     @PostMapping("/addNewInsurances")
     public ResponseEntity<String> addNewInsurances(@RequestBody Allinsurance allInsurance) {
-        try {
-            allInsuranceService.addInsurance(allInsurance);
+        allInsuranceService.addInsurance(allInsurance);
 
-            Checkedinsurances checkedInsurance = new Checkedinsurances();
-            checkedInsurance.setId_document_insurances(allInsurance.getId());
-            checkedInsurance.setStatusCheckedInsured("Не проверено");
-            checkedInsurance.setInsurance_claim_check("Не подтверждено");
-            checkedInsurance.setPayment_verification_check("Не выплачено");
+        Checkedinsurances checkedInsurance = new Checkedinsurances();
+        checkedInsurance.setId_document_insurances(allInsurance.getId());
+        checkedInsurance.setStatusCheckedInsured("Не проверено");
+        checkedInsurance.setInsurance_claim_check("Не подтверждено");
+        checkedInsurance.setPayment_verification_check("Не выплачено");
 
-            checkedinsurancesService.saveCheckedInsurance(checkedInsurance);
+        checkedinsurancesService.saveCheckedInsurance(checkedInsurance);
 
-            return ResponseEntity.status(HttpStatus.CREATED).body("Страховка успешно зарегистрирована.");
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Произошла ошибка при регистрации страховки. Пожалуйста, попробуйте еще раз.");
-        }
+        return ResponseEntity.status(HttpStatus.OK).body("Страховка успешно зарегистрирована.");
     }
 }
