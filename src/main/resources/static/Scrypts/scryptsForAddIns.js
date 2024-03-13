@@ -50,8 +50,6 @@ function regNewInsurances() {
         contract_end_date: contract_end_date
     };
 
-    console.log(newInsurance);
-
     fetch('/addNewInsurances', {
         method: 'POST',
         headers: {

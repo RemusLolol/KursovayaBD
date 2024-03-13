@@ -185,7 +185,27 @@ function changeChecks() {
 }
 
 function declineCaseIns(){
-// Сделать удаление в statusPayment и в statusCheck
+    event.preventDefault();
+    console.log(idDoc);
+    fetch('/deleteInsurancesCase', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(idDoc) // отправляем просто значение idDoc
+    })
+        .then(response => {
+            if (response.ok) {
+                // Удаление успешно, обновить список страховых случаев
+                console.log('Insurance case deleted successfully');
+                // Здесь можно добавить код для обновления списка страховых случаев
+            } else {
+                console.error('Failed to delete insurance case');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
 }
 
 function formatDateAdd(date) {

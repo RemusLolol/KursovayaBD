@@ -35,4 +35,8 @@ public class CheckedinsurancesService {
     public Optional<Checkedinsurances> findById(Long id) {
         return checkedinsurancesRepository.findById(id);
     }
+
+    public void deleteById(Long id) {
+        checkedinsurancesRepository.deleteById(id);
+    }
 }

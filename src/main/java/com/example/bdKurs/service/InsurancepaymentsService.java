@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class InsurancepaymentsService {
@@ -18,8 +19,12 @@ public class InsurancepaymentsService {
         return insurancepaymentsRepository.save(insurancepayment);
     }
 
-    public List<Insurancepayments> getAllInsurancePayments() {
-        return insurancepaymentsRepository.findAllInsurancePayments();
+    public Optional<Insurancepayments> findById(Long id) {
+        return insurancepaymentsRepository.findById(id);
+    }
+
+    public void deleteById(Long id) {
+        insurancepaymentsRepository.deleteById(id);
     }
 
     public List<Insurancepayments> findAllById(List<Long> ids) {
