@@ -81,7 +81,7 @@ function getDocument2(){
             console.error(error);
         });
 }
-
+let idDoc;
 function getDopInfoDoc() {
     const documentSelect = document.getElementById('documentSelect2').value;
     fetch('/getInsurancePaymentsById', {
@@ -100,6 +100,7 @@ function getDopInfoDoc() {
         .then(data => {
             console.log(data);
             if (data.length > 0) {
+                idDoc = data[0].id;
                 document.getElementById('insuranceCase').textContent = data[0].insurance_case;
                 document.getElementById('amountPayment').value  = data[0].amount_payment;
 
@@ -141,15 +142,52 @@ function calculateAmountPayment() {
     document.getElementById('amountPayment').value = amountPayment;
 }
 
-function formatDateAdd(date) {
-    return new Date(date).toLocaleDateString('ru-RU');
-}
+function changeChecks() {
+    event.preventDefault();
+    const docId = document.getElementById('documentSelect2').value;
+    const insCase = document.getElementById('insuranceCase').textContent;
+    const sevEvent = document.getElementById('severityInsuredevent').value;
+    const amount = document.getElementById('amountPayment').value;
 
-function changeChecks(){
-// сделать изменения в тяжести страхового случая и в сумме выплаты
-// сделай изменение в статусе страховок
+    const updatedInsurance = {
+        insurancepayment: {
+            id: idDoc,
+            id_document_insurances: docId,
+            insurance_case: insCase,
+            severityinsuredevent: sevEvent,
+            amount_payment: amount
+        },
+        checkedinsurances: {
+            id: idDoc,
+            id_document_insurances: docId,
+            statusCheckedInsured: 'Проверено',
+            insurance_claim_check: 'Подтверждено',
+            payment_verification_check: document.getElementById('checkPayment').value
+        }
+    };
+    fetch('/updateChanges', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(updatedInsurance)
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.text();
+        })
+        .then(text => {
+            console.log('Changes saved:', text);
+        })
+        .catch(error => console.error('Error:', error));
 }
 
 function declineCaseIns(){
 // Сделать удаление в statusPayment и в statusCheck
+}
+
+function formatDateAdd(date) {
+    return new Date(date).toLocaleDateString('ru-RU');
 }

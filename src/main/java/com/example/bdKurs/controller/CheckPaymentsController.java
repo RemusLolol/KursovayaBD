@@ -2,6 +2,7 @@ package com.example.bdKurs.controller;
 
 import com.example.bdKurs.model.Allinsurance;
 import com.example.bdKurs.model.Checkedinsurances;
+import com.example.bdKurs.model.InsuranceChangesRequest;
 import com.example.bdKurs.model.Insurancepayments;
 import com.example.bdKurs.service.AllInsuranceService;
 import com.example.bdKurs.service.CheckedinsurancesService;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 import java.util.Map;
@@ -26,13 +28,14 @@ public class CheckPaymentsController {
     private final AllInsuranceService allInsuranceService;
 
     @Autowired
-    public CheckPaymentsController(AllInsuranceService allInsuranceService, InsurancepaymentsService insurancepaymentsService, CheckedinsurancesService checkedinsurancesService){
+    public CheckPaymentsController(AllInsuranceService allInsuranceService, InsurancepaymentsService insurancepaymentsService, CheckedinsurancesService checkedinsurancesService) {
         this.insurancepaymentsService = insurancepaymentsService;
         this.checkedinsurancesService = checkedinsurancesService;
         this.allInsuranceService = allInsuranceService;
     }
+
     @GetMapping("/checkPayments")
-    public String checkPayments(){
+    public String checkPayments() {
         return "checkPaymentsIns";
     }
 
@@ -48,5 +51,20 @@ public class CheckPaymentsController {
         return new ResponseEntity<>(insurancePayments, HttpStatus.OK);
     }
 
+
+    @PostMapping("/updateChanges")
+    public ResponseEntity<String> addChanges(@RequestBody InsuranceChangesRequest insuranceChangesRequest) {
+        if (insuranceChangesRequest == null || insuranceChangesRequest.getInsurancepayment() == null || insuranceChangesRequest.getCheckedinsurances() == null) {
+            return ResponseEntity.badRequest().body("Invalid request data");
+        }
+
+        Insurancepayments insurancepayment = insuranceChangesRequest.getInsurancepayment();
+        insurancepaymentsService.addInsurancepayment(insurancepayment);
+
+        Checkedinsurances checkedinsurances = insuranceChangesRequest.getCheckedinsurances();
+        checkedinsurancesService.saveCheckedInsurance(checkedinsurances);
+
+        return ResponseEntity.ok("Changes added successfully");
+    }
 
 }
